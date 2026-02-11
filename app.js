@@ -1,6 +1,13 @@
 (() => {
   const YEAR = 2026;
 
+  const isMobileQuery = window.matchMedia("(max-width: 640px)");
+
+  const modalRoot = document.getElementById("mobileEventModal");
+  const modalTitle = document.getElementById("mobileEventModalTitle");
+  const modalBody = document.getElementById("mobileEventModalBody");
+  const modalCloseBtn = document.getElementById("mobileEventModalClose");
+
   /**
    * Fuente de verdad de eventos.
    * - `title` se mantiene EXACTO.
@@ -124,6 +131,54 @@
   }
 
   let selectedDate = null;
+
+  function isMobile() {
+    return Boolean(isMobileQuery?.matches);
+  }
+
+  function openMobileModal(dateKey, selectedEvents) {
+    if (!modalRoot || !modalTitle || !modalBody) return;
+    if (!isMobile()) return;
+    if (!selectedEvents || selectedEvents.length === 0) return;
+
+    modalTitle.textContent = formatDateES(dateKey);
+    modalBody.textContent = "";
+
+    for (const event of selectedEvents) {
+      const card = document.createElement("div");
+      card.className = "event-card";
+
+      const name = document.createElement("h3");
+      name.className = "event-name";
+      name.textContent = event.title;
+
+      const date = document.createElement("p");
+      date.className = "event-date";
+
+      const range = eventRange(event);
+      date.textContent = range.isFixedDate
+        ? `${formatDateES(dateKey)}`
+        : `${formatDateES(dateKey)} · Inicio: ${range.start} · Fin: ${range.end}`;
+
+      const desc = document.createElement("p");
+      desc.className = "event-desc";
+      desc.textContent = event.description;
+
+      card.appendChild(name);
+      card.appendChild(date);
+      card.appendChild(desc);
+      modalBody.appendChild(card);
+    }
+
+    modalRoot.classList.add("is-open");
+    modalRoot.setAttribute("aria-hidden", "false");
+  }
+
+  function closeMobileModal() {
+    if (!modalRoot) return;
+    modalRoot.classList.remove("is-open");
+    modalRoot.setAttribute("aria-hidden", "true");
+  }
 
   function pad2(n) {
     return String(n).padStart(2, "0");
@@ -282,6 +337,9 @@
     if (target) target.classList.add("is-selected");
 
     renderSelectedEvent();
+
+    const selectedEvents = selectedDate ? eventsByDate.get(selectedDate) : null;
+    openMobileModal(selectedDate, selectedEvents);
   }
 
   function renderYear() {
@@ -341,4 +399,23 @@
   renderYear();
   renderEventsList();
   renderSelectedEvent();
+
+  if (modalRoot) {
+    modalRoot.addEventListener("click", (e) => {
+      const el = e.target;
+      if (el instanceof HTMLElement && el.dataset.modalClose === "true") {
+        closeMobileModal();
+      }
+    });
+
+    modalCloseBtn?.addEventListener("click", closeMobileModal);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMobileModal();
+    });
+
+    isMobileQuery?.addEventListener?.("change", () => {
+      if (!isMobile()) closeMobileModal();
+    });
+  }
 })();
