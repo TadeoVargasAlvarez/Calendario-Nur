@@ -25,6 +25,7 @@
     { date: "2026-05-24", title: "Declaración del Báb", description: "Declaración del Báb" },
     { date: "2026-05-29", title: "Ascensión de Bahá’u’lláh", description: "Ascensión de Bahá’u’lláh" },
     { date: "2026-07-10", title: "Martirio del Báb", description: "Martirio del Báb" },
+    { date: "2026-11-11", title: "Nacimiento de Bahá’u’lláh", description: "Nacimiento de Bahá’u’lláh" },
 
     // Calendario académico (Enero–Marzo)
     { date: "2026-01-01", title: "Año nuevo", description: "Año nuevo", range: "fixedDate" },
@@ -54,6 +55,45 @@
     { date: "2026-03-25", title: "Tutoría 2 – Semana A", description: "Tutoría 2 – Semana A", range: "fixedDate" },
     { date: "2026-03-28", title: "Tutoría 2 – Semana B", description: "Tutoría 2 – Semana B", range: "fixedDate" },
     { date: "2026-03-29", title: "Tutoría 2 – Semana B", description: "Tutoría 2 – Semana B", range: "fixedDate" },
+
+    // Feriados Bolivia 2026 (nombres explícitos)
+    { date: "2026-01-01", title: "Año Nuevo", description: "Año Nuevo", range: "fixedDate", kind: "holiday" },
+    {
+      date: "2026-01-22",
+      title: "Día del Estado Plurinacional de Bolivia",
+      description: "Día del Estado Plurinacional de Bolivia",
+      range: "fixedDate",
+      kind: "holiday",
+    },
+    { date: "2026-02-16", title: "Carnaval", description: "Carnaval", range: "fixedDate", kind: "holiday" },
+    { date: "2026-02-17", title: "Carnaval", description: "Carnaval", range: "fixedDate", kind: "holiday" },
+    { date: "2026-04-03", title: "Viernes Santo", description: "Viernes Santo", range: "fixedDate", kind: "holiday" },
+    { date: "2026-05-01", title: "Día del Trabajador", description: "Día del Trabajador", range: "fixedDate", kind: "holiday" },
+    { date: "2026-06-04", title: "Corpus Christi", description: "Corpus Christi", range: "fixedDate", kind: "holiday" },
+    {
+      date: "2026-06-21",
+      title: "Año Nuevo Andino Amazónico y del Chaco",
+      description: "Año Nuevo Andino Amazónico y del Chaco",
+      range: "fixedDate",
+      kind: "holiday",
+    },
+    {
+      date: "2026-07-16",
+      title: "Día de la Revolución de La Paz",
+      description: "Día de la Revolución de La Paz",
+      range: "fixedDate",
+      kind: "holiday",
+    },
+    {
+      date: "2026-08-06",
+      title: "Día de la Independencia de Bolivia",
+      description: "Día de la Independencia de Bolivia",
+      range: "fixedDate",
+      kind: "holiday",
+    },
+    { date: "2026-09-24", title: "Día de Santa Cruz", description: "Día de Santa Cruz", range: "fixedDate", kind: "holiday" },
+    { date: "2026-11-02", title: "Día de los Difuntos", description: "Día de los Difuntos", range: "fixedDate", kind: "holiday" },
+    { date: "2026-12-25", title: "Navidad", description: "Navidad", range: "fixedDate", kind: "holiday" },
 
     // Calendario académico (Abril–Julio)
     { date: "2026-04-01", title: "Tutoría 2 – Semana B", description: "Tutoría 2 – Semana B", range: "fixedDate" },
@@ -205,6 +245,7 @@
 
   function isHolidayEvent(event) {
     const title = event?.title ?? "";
+    if (event?.kind === "holiday") return true;
     return title.startsWith("Feriado") || title === "Año nuevo" || title.includes("Carnaval");
   }
 
