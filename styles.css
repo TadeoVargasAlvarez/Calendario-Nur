@@ -8,6 +8,7 @@
   --accent: #a78bfa;
   --accent-2: #38bdf8;
   --event: #fbbf24;
+  --holiday: #ef4444;
 }
 
 * {
@@ -145,11 +146,11 @@ body {
 }
 
 .day.is-holiday {
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(167, 139, 250, 0.08));
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(167, 139, 250, 0.06));
 }
 
 .day.is-holiday-institutional {
-  background: linear-gradient(135deg, rgba(167, 139, 250, 0.22), rgba(251, 191, 36, 0.06));
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(167, 139, 250, 0.08));
 }
 
 .day.is-clickable {
@@ -173,13 +174,13 @@ body {
 }
 
 .event-dot.is-holiday {
-  background: var(--accent-2);
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
+  background: var(--holiday);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
 }
 
 .event-dot.is-holiday-institutional {
-  background: var(--accent);
-  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.18);
+  background: var(--accent-2);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
 }
 
 .event-label {
@@ -245,11 +246,11 @@ body {
 }
 
 .legend-dot.is-holiday {
-  background: var(--accent-2);
+  background: var(--holiday);
 }
 
 .legend-dot.is-holiday-institutional {
-  background: var(--accent);
+  background: var(--accent-2);
 }
 
 .legend-text {
