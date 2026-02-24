@@ -148,6 +148,10 @@ body {
   background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(167, 139, 250, 0.08));
 }
 
+.day.is-holiday-institutional {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.22), rgba(251, 191, 36, 0.06));
+}
+
 .day.is-clickable {
   cursor: pointer;
 }
@@ -171,6 +175,11 @@ body {
 .event-dot.is-holiday {
   background: var(--accent-2);
   box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
+}
+
+.event-dot.is-holiday-institutional {
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.18);
 }
 
 .event-label {

@@ -268,6 +268,14 @@
     return title.startsWith("Feriado") || title === "Año nuevo" || title.includes("Carnaval");
   }
 
+  function isInstitutionalHolidayEvent(event) {
+    return event?.kind === "nurReligious" || event?.title === "Feriado Institucional";
+  }
+
+  function isNonInstitutionalHolidayEvent(event) {
+    return isHolidayEvent(event) && !isInstitutionalHolidayEvent(event);
+  }
+
   function uniqueEventsByKey(list) {
     const out = [];
     const seen = new Set();
@@ -458,10 +466,15 @@
 
       const dayEvents = eventsByDate.get(dateKey);
       if (dayEvents && dayEvents.length > 0) {
-        const hasHoliday = dayEvents.some(isHolidayEvent);
-        const primary = (hasHoliday ? dayEvents.find(isHolidayEvent) : null) ?? dayEvents[0];
+        const hasInstitutionalHoliday = dayEvents.some(isInstitutionalHolidayEvent);
+        const hasNonInstitutionalHoliday = dayEvents.some(isNonInstitutionalHolidayEvent);
+        const primary =
+          (hasInstitutionalHoliday ? dayEvents.find(isInstitutionalHolidayEvent) : null) ??
+          (hasNonInstitutionalHoliday ? dayEvents.find(isNonInstitutionalHolidayEvent) : null) ??
+          dayEvents[0];
         dayEl.classList.add("is-event");
-        if (hasHoliday) dayEl.classList.add("is-holiday");
+        if (hasInstitutionalHoliday) dayEl.classList.add("is-holiday-institutional");
+        else if (hasNonInstitutionalHoliday) dayEl.classList.add("is-holiday");
 
         dayEl.classList.add("is-clickable");
         dayEl.dataset.date = dateKey;
@@ -471,7 +484,8 @@
 
         const dot = document.createElement("div");
         dot.className = "event-dot";
-        if (hasHoliday) dot.classList.add("is-holiday");
+        if (hasInstitutionalHoliday) dot.classList.add("is-holiday-institutional");
+        else if (hasNonInstitutionalHoliday) dot.classList.add("is-holiday");
         dot.title = primary.title;
         dayEl.appendChild(dot);
 
