@@ -1,0 +1,94 @@
+GUÍA PARA SEGUIR EDITANDO EL PROYECTO EN OTRA COMPUTADORA (Windows)
+
+Objetivo
+- Bajar el mismo proyecto desde GitHub en la nueva PC.
+- Seguir editando con VS Code.
+- Sincronizar cambios con git (pull / commit / push).
+
+Requisitos en la nueva PC
+1) Instalar Git
+   - Descarga: https://git-scm.com/downloads
+
+2) Instalar Visual Studio Code
+   - Descarga: https://code.visualstudio.com/
+
+3) (Opcional) Instalar Node.js
+   - Solo si quieres ejecutar el servidor local con npm start.
+   - Descarga: https://nodejs.org/
+
+Paso A — Clonar el repositorio
+1) Abre PowerShell.
+2) Ve a una carpeta donde guardarás el proyecto (ejemplo):
+   cd $HOME\Documents
+
+3) Clona el repo:
+   git clone https://github.com/TadeoVargasAlvarez/Calendario-Nur.git
+
+4) Entra al proyecto:
+   cd Calendario-Nur
+
+5) Abre VS Code en esa carpeta:
+   code .
+
+
+Paso B — Ejecutar el proyecto
+Opción 1 (más simple)
+- Abre index.html con el navegador.
+
+Opción 2 (servidor local)
+1) En la carpeta del proyecto:
+   npm start
+2) Abre en el navegador:
+   http://localhost:3000
+
+Si el puerto 3000 está ocupado:
+- PowerShell:
+  $env:PORT = 3001; npm start
+
+
+Paso C — Flujo normal para seguir trabajando (sincronizar)
+Antes de empezar a editar:
+1) Trae cambios del remoto:
+   git pull
+
+Después de editar:
+1) Ver qué cambió:
+   git status
+
+2) Agregar cambios:
+   git add -A
+
+3) Hacer commit:
+   git commit -m "Describe tu cambio"
+
+4) Subir a GitHub:
+   git push
+
+
+Inicio de sesión para poder hacer git push (elige UNA opción)
+
+Opción 1 — GitHub CLI (recomendado si quieres fácil)
+1) Instala GitHub CLI: https://cli.github.com/
+2) En PowerShell:
+   gh auth login
+3) Luego podrás hacer git push normalmente.
+
+Opción 2 — HTTPS con Token (PAT)
+- GitHub ya no usa contraseña normal para git push.
+1) En GitHub crea un token (PAT) con permiso de repo.
+2) Cuando git pida contraseña, pega el token.
+
+Opción 3 — SSH (más pro, 1 sola vez)
+1) Genera llave:
+   ssh-keygen -t ed25519 -C "tu-email"
+2) Copia la llave pública (archivo .pub) y agrégala en GitHub (SSH keys).
+3) Cambia el remoto a SSH:
+   git remote set-url origin git@github.com:TadeoVargasAlvarez/Calendario-Nur.git
+
+
+Si vas a usar USB (sin internet)
+- Copia la carpeta completa del proyecto.
+- PERO: si no copias la carpeta .git, perderás el historial y la conexión con GitHub.
+- Lo más recomendado sigue siendo clonar desde GitHub.
+
+Fin.
