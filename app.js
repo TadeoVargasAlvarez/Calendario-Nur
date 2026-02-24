@@ -305,13 +305,13 @@
 
     pushEvent(eventsByDate, startDate, {
       ...event,
-      description: "Empieza hoy a las 18:00.",
+      description: event.description ? `${event.description} · Empieza hoy a las 18:00.` : "Empieza hoy a las 18:00.",
       occurrence: "start",
     });
 
     pushEvent(eventsByDate, event.date, {
       ...event,
-      description: "Termina hoy a las 18:00.",
+      description: event.description ? `${event.description} · Termina hoy a las 18:00.` : "Termina hoy a las 18:00.",
       occurrence: "end",
     });
   }
