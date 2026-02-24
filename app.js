@@ -582,7 +582,8 @@
     if (!selectedEvents || selectedEvents.length === 0) {
       const empty = document.createElement("div");
       empty.className = "empty-state";
-      empty.textContent = "Selecciona una fecha marcada en el calendario.";
+      empty.textContent =
+        "Para obtener información más detallada sobre una fecha específica, le invitamos a hacer clic en la fecha correspondiente.";
       list.appendChild(empty);
       return;
     }
