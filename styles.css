@@ -216,6 +216,48 @@ body {
   font-size: 16px;
 }
 
+.legend {
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel-2);
+  margin-bottom: 10px;
+}
+
+.legend-item {
+  display: grid;
+  grid-template-columns: 12px 1fr;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  box-shadow: 0 0 0 3px rgba(11, 18, 32, 0.06);
+}
+
+.legend-dot.is-event {
+  background: var(--event);
+}
+
+.legend-dot.is-holiday {
+  background: var(--accent-2);
+}
+
+.legend-dot.is-holiday-institutional {
+  background: var(--accent);
+}
+
+.legend-text {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.25;
+}
+
 .events-list {
   display: grid;
   gap: 10px;

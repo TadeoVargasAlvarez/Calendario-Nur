@@ -21,6 +21,20 @@
 
         <aside class="sidebar" aria-label="Lista de eventos">
           <h2 class="sidebar-title">Selecciona fecha</h2>
+          <div class="legend" aria-label="Leyenda de colores">
+            <div class="legend-item">
+              <span class="legend-dot is-event" aria-hidden="true"></span>
+              <span class="legend-text">Eventos (tutorías, parciales, etc.)</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot is-holiday" aria-hidden="true"></span>
+              <span class="legend-text">Feriado no institucional (nacional/departamental)</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot is-holiday-institutional" aria-hidden="true"></span>
+              <span class="legend-text">Feriado institucional (Nur/Bahá’í)</span>
+            </div>
+          </div>
           <div id="eventsList" class="events-list"></div>
         </aside>
       </section>
